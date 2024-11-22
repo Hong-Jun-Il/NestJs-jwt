@@ -4,23 +4,16 @@ import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
+  private users = [{ id: 'user1', password: 'user1@user1', age: 24 }];
   create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+    this.users.push(createUserDto);
+    return {
+      message: 'create user 성공',
+      user: createUserDto,
+    };
   }
 
-  findAll() {
-    return `This action returns all users`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
-
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  getAllUsers() {
+    return this.users;
   }
 }

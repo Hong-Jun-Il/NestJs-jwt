@@ -10,19 +10,44 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import style from "./signUp.module.scss";
+import { Button } from "@/components/ui/button";
 
 export default function SignUp() {
   const { control, handleSubmit } = useFormContext<SignUpSchemaType>();
 
-  const onSubmit = () => {};
+  const onSubmit = async (e: SignUpSchemaType) => {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/users/signup`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: e.id,
+          pw: e.password,
+          age: e.age,
+        }),
+        credentials: "include",
+        mode: "cors",
+      },
+    );
+
+    if (!res.ok) {
+      throw new Error("HTTP ERROR");
+    }
+
+    return res.json();
+  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
       <FormField
         control={control}
         name="id"
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="w-[50%]">
             <FormLabel>아이디</FormLabel>
             <FormControl>
               <Input placeholder="아이디 입력" {...field} />
@@ -36,7 +61,7 @@ export default function SignUp() {
         control={control}
         name="password"
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="w-[50%]">
             <FormLabel>비밀번호</FormLabel>
             <FormControl>
               <Input placeholder="비밀번호 입력" {...field} />
@@ -50,15 +75,17 @@ export default function SignUp() {
         control={control}
         name="age"
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="w-[50%]">
             <FormLabel>나이</FormLabel>
             <FormControl>
-              <Input type="number" placeholder="나이 입력" {...field} />
+              <Input placeholder="나이 입력" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
         )}
       />
+
+      <Button className={style.submit}>제출하기</Button>
     </form>
   );
 }

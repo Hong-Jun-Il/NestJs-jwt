@@ -1,0 +1,16 @@
+.form {
+    width: 500px;
+    height: 500px;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .submit {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+    }
+}
