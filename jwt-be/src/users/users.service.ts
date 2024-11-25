@@ -1,19 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { DatabaseService } from 'src/database/database.service';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class UsersService {
-  private users = [{ id: 'user1', password: 'user1@user1', age: 24 }];
-  create(createUserDto: CreateUserDto) {
-    this.users.push(createUserDto);
-    return {
-      message: 'create user 성공',
-      user: createUserDto,
-    };
-  }
+  constructor(private readonly databaseService: DatabaseService) {}
 
-  getAllUsers() {
-    return this.users;
+  async signUp(signUpUserDto: Prisma.UsersCreateInput) {
+    try {
+      return this.databaseService.users.create({
+        data: {
+          id: signUpUserDto.id,
+          password: signUpUserDto.password,
+          age: Number(signUpUserDto.age),
+        },
+      });
+    } catch (error) {
+      console.error(error);
+      throw new Error('회원가입 처리 에러');
+    }
   }
 }

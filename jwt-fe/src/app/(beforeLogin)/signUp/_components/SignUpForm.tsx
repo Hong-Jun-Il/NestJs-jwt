@@ -13,7 +13,7 @@ import {
 import style from "./signUp.module.scss";
 import { Button } from "@/components/ui/button";
 
-export default function SignUp() {
+export default function SignUpForm() {
   const { control, handleSubmit } = useFormContext<SignUpSchemaType>();
 
   const onSubmit = async (e: SignUpSchemaType) => {
@@ -26,8 +26,8 @@ export default function SignUp() {
         },
         body: JSON.stringify({
           id: e.id,
-          pw: e.password,
-          age: e.age,
+          password: e.password,
+          age: Number(e.age),
         }),
         credentials: "include",
         mode: "cors",

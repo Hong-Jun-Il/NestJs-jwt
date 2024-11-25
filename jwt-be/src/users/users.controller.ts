@@ -1,18 +1,29 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
+import { SignUpUserDto } from './dto/signUp-user.dto';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post('signup')
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
-  }
+  @UsePipes(ValidationPipe)
+  async signUp(@Body() signUpUserDto: SignUpUserDto) {
+    const result = await this.usersService.signUp(signUpUserDto);
+    const user = {
+      id: result.id,
+      age: result.age,
+    };
 
-  @Get()
-  getUsers() {
-    return this.usersService.getAllUsers();
+    return {
+      message: '회원가입에 성공하였습니다',
+      user,
+    };
   }
 }

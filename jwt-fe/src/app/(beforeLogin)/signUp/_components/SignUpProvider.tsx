@@ -7,7 +7,7 @@ import {
 } from "@/types/Schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
-import SignUp from "./SignUp";
+import SignUp from "./SignUpForm";
 
 export default function SignUpProvider() {
   const methods = useForm<SignUpSchemaType>({
