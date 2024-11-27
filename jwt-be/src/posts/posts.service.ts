@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 
 @Injectable()
 export class PostsService {
-  private posts = Array.from({ length: 54 }, (_, i) => ({
+  private posts = Array.from({ length: 95 }, (_, i) => ({
     id: i + 1,
     title: `title ${i + 1}`,
     img: faker.image.url(),
@@ -12,7 +12,10 @@ export class PostsService {
 
   getPosts(page: number) {
     try {
-      const start = (page - 1) * 8;
+      if (page === 1) {
+        return this.posts.slice(0, 16);
+      }
+      const start = page * 8;
       const end = start + 8;
 
       const data = this.posts.slice(start, end);

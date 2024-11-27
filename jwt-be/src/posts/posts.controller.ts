@@ -7,6 +7,6 @@ export class PostsController {
 
   @Get()
   getPosts(@Query('page') page: number) {
-    return this.postsService.getPosts(page);
+    return this.postsService.getPosts(+page);
   }
 }

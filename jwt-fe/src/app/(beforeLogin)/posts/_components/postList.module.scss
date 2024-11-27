@@ -1,10 +1,30 @@
 .postListWrapper {
-    margin-top: 60px;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: aliceblue;
-    row-gap: 80px;
-
     width: 100%;
     padding: 0 16px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    column-gap: 10px;
+    row-gap: 50px;
+    min-height: 110dvh;
+
+    li {
+        height: fit-content;
+
+        .imgWrapper {
+            aspect-ratio: 16/9;
+            width: 100%;
+            position: relative;
+            background-color: gray;
+        }
+
+        .infoSection {
+            h2 {
+                font-size: 30px;
+            }
+
+            p {
+                font-size: 20px;
+            }
+        }
+    }
 }

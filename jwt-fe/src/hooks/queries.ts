@@ -21,7 +21,7 @@ export function useGetPosts() {
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage, _, lastPageParam) => {
-      if (lastPage.length !== 8) {
+      if (lastPageParam !== 1 && lastPage.length !== 8) {
         return undefined;
       }
 
