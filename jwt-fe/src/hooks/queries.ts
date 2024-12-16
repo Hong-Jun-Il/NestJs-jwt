@@ -29,13 +29,3 @@ export function useGetPosts() {
     },
   });
 }
-
-export async function getAnalitics() {
-  const res = await fetch("http://localhost:5173/analysis");
-
-  if (!res.ok) {
-    throw new Error("HTTP ERROR");
-  }
-
-  return res.json();
-}
