@@ -1,9 +1,6 @@
-// const test = `${Intl.DateTimeFormat("ko-KR", {
-//   dateStyle: "short",
-//   timeStyle: "short",
-//   timeZone: "Asia/Seoul",
-// }).format(new Date())}\t\n`;
+const test =
+  /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&'()*+,-./:;<=>?@[\]^_`{|}~]).+$/;
 
-// const test2 = new Date().toLocaleString();
+const s = "qsc@1zqq";
 
-// console.log(test2);
+console.log(test.test(s));

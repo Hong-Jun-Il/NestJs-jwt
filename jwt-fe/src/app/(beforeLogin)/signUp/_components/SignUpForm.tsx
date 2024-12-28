@@ -85,7 +85,7 @@ export default function SignUpForm() {
         )}
       />
 
-      <Button className={style.submit}>제출하기</Button>
+      <Button className={style.submit}>회원가입</Button>
     </form>
   );
 }
