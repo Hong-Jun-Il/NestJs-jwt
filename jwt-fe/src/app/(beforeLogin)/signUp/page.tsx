@@ -2,8 +2,8 @@ import SignUpProvider from "./_components/SignUpProvider";
 
 export default function SignUp() {
   return (
-    <div>
+    <main className="flex min-h-screen items-center justify-center">
       <SignUpProvider />
-    </div>
+    </main>
   );
 }

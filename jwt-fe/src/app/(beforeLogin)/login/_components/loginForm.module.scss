@@ -1,0 +1,27 @@
+.form {
+    border: 1px solid;
+    width: 500px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    input {
+        width: 250px;
+    }
+
+    .inputWrapper {
+        position: relative;
+
+        .inputTypeBtn {
+            width: 15px;
+            aspect-ratio: auto;
+            position: absolute;
+            top: 3px;
+            right: 15px;
+            cursor: pointer;
+        }
+    }
+}

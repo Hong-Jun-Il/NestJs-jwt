@@ -30,6 +30,10 @@ img {
   object-fit: cover;
 }
 
+main {
+  background-color: aliceblue;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

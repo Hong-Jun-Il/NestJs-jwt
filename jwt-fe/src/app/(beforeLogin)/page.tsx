@@ -1,10 +1,11 @@
-import GoogleMaps from "../_components/GoogleMaps/GoogleMaps";
+import Link from "next/link";
 import style from "./beforeLogin.module.scss";
 
 export default function BeforeLogin() {
   return (
     <main className={style.main}>
-      <GoogleMaps />
+      <Link href="/signUp">회원가입하기</Link>
+      <Link href="/login">로그인하기</Link>
     </main>
   );
 }

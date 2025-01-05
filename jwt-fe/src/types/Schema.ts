@@ -24,5 +24,26 @@ export const SignUpDefaultValues: SignUpSchemaType = {
 };
 
 export const LoginSchema = z.object({
-  id: z.string(),
+  id: z
+    .string()
+    .min(3, { message: "아이디는 최소 3글자" })
+    .max(15, { message: "아이디는 최대 15글자" })
+    .regex(/^(?!.*[ㄱ-ㅎ가-힣])(?=.*[a-zA-Z])(?=.*\d).+$/, {
+      message: "아이디는 영문자 및 숫자 포함하여야 함",
+    }),
+  password: z
+    .string()
+    .min(8, { message: "비밀번호는 최소 8글자" })
+    .max(18, { message: "비밀번호는 최대 18글자" })
+    .regex(
+      /^(?!.*[ㄱ-ㅎ가-힣])(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+\-=\|\[\]\{\}\\;\':\",.<>?\/]).+$/,
+      { message: "비밀번호는 영문자, 숫자 및 특수문자를 포함해야 함" },
+    ),
 });
+
+export type LoginSchemaType = z.infer<typeof LoginSchema>;
+
+export const LoginDefaultValues = {
+  id: "",
+  password: "",
+};

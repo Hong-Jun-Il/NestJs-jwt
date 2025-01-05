@@ -7,9 +7,8 @@ import { JwtModule } from '@nestjs/jwt';
 @Module({
   imports: [
     DatabaseModule,
-    JwtModule,
     JwtModule.register({
-      secret: 'token',
+      secret: process.env.JWT_SECRET,
     }),
   ],
   controllers: [UsersController],

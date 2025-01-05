@@ -32,6 +32,7 @@ export class AllExceptionFilter extends BaseExceptionFilter {
       resObj.response = 'Internal Server Error';
     }
 
+    console.log(resObj.statusCode);
     response.status(resObj.statusCode).json(resObj);
     this.logger.error(resObj.response, AllExceptionFilter.name);
     super.catch(exception, host);

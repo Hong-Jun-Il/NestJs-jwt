@@ -5,8 +5,7 @@ import { UsersModule } from './users/users.module';
 import { DatabaseModule } from './database/database.module';
 import { MyLoggerModule } from './my-logger/my-logger.module';
 import { PostsModule } from './posts/posts.module';
-import { AuthModule } from './auth/auth.module';
-import { JwtModule } from '@nestjs/jwt';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   controllers: [AppController],
@@ -16,7 +15,9 @@ import { JwtModule } from '@nestjs/jwt';
     DatabaseModule,
     MyLoggerModule,
     PostsModule,
-    AuthModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
   ],
 })
 export class AppModule {}
