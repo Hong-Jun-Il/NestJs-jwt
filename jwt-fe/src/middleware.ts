@@ -18,9 +18,14 @@ async function verifyToken(
     },
   );
 
-  console.log(res.headers.get("set-cookie"));
-
   if (res.ok) {
+    const access_token = res.headers.get("set-cookie");
+
+    if (!!access_token) {
+      console.log("실행됨");
+      return access_token;
+    }
+
     return true;
   }
 
@@ -47,6 +52,7 @@ export async function middleware(req: NextRequest) {
       // 액세스랑 리프가 둘 다 있는 경우 검증
       if (accessToken && refreshToken) {
         const isLogin = await verifyToken(refreshToken, accessToken);
+        console.log(isLogin, "ㄴㅁㅇㄴㅁㅇ");
 
         if (!isLogin) {
           throw new Error("Auth Error");
@@ -56,6 +62,7 @@ export async function middleware(req: NextRequest) {
         // 액세스는 없는데 리프는 있는 경우
       } else if (!accessToken && refreshToken) {
         const isLogin = await verifyToken(refreshToken);
+        console.log(isLogin, "ㄴㅁㅇㄴㅁㅇ");
 
         if (!isLogin) {
           throw new Error("Auth Error");

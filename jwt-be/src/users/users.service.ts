@@ -50,7 +50,7 @@ export class UsersService {
         age,
       },
       {
-        expiresIn: '20s',
+        expiresIn: '10s',
       },
     );
 
@@ -104,7 +104,7 @@ export class UsersService {
             age,
           },
           {
-            expiresIn: '20s',
+            expiresIn: '10s',
           },
         );
 

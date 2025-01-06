@@ -73,6 +73,7 @@ export class UsersController {
       accessToken,
     );
 
+    console.log(verifyToken.access_token);
     if (verifyToken.access_token) {
       console.log(verifyToken.access_token);
       res.cookie('access_token', verifyToken.access_token, {
@@ -83,6 +84,7 @@ export class UsersController {
       });
     }
 
+    console.log('실행됨');
     return {
       message: verifyToken.message,
     };
